@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Advisor cube Form</title>
+
+    <!-- css -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <!-- googlr font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Spartan:wght@200;300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <style>
+    body {
+      font-family: "Spartan", sans-serif;
+      background: #e8e7e7;
+    }
+    .form-holder {
+      width: 100%;
+      height: 97vh;
+      background-color: white;
+      margin: 10px auto;
+      filter: drop-shadow(0px 9px 8px rgba(152, 184, 190, 0.31));
+    }
+    .header-text {
+      color: #291b44;
+      margin: 40px 0 18px;
+      font-size: 1.875rem;
+      text-align: center;
+      font-weight: 800;
+      line-height: 40px;
+    }
+    .form-class {
+      padding: 8px;
+      overflow-y: auto;
+      height: 80vh;
+      min-width: 360px;
+    }
+    .user-title-holder {
+      border: 0;
+      margin: 0;
+      display: inline-flex;
+      padding: 0;
+      position: relative;
+      min-width: 0;
+      /* flex-direction: column; */
+      vertical-align: top;
+    }
+    .user-input-holder {
+      border: 0;
+      width: 100%;
+      margin: 20px 0px;
+      display: inline-flex;
+      padding: 0;
+      position: relative;
+      min-width: 0;
+      flex-direction: column;
+      vertical-align: top;
+    }
+    .title-legend {
+      color: #291b44;
+      font-size: 1rem;
+      margin-top: 8px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .user-title {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    .user-title-box {
+      margin: 8px;
+      border-style: solid;
+      border-width: 2px;
+      border-radius: 4px;
+      background-color: rgb(255, 255, 255);
+      transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+      border-color: #e5e5e5;
+    }
+    .user-title-box-label {
+      margin: 6px 12px 4px;
+      flex-direction: column-reverse;
+      cursor: pointer;
+      display: inline-flex;
+      font-size: 18px;
+      height: 65px;
+      width: 40px;
+      vertical-align: middle;
+      position: relative;
+    }
+    .user-title-box-label p {
+      text-align: center;
+      margin: 0 auto 10px;
+      font-size: 16px;
+      color: #291b44;
+    }
+    .user-title-radio {
+      top: 13px;
+      z-index: 3;
+      width: 20px;
+      cursor: inherit;
+      height: 100%;
+      left: 10px;
+      margin: auto;
+      /* opacity: 0; */
+      padding: 0;
+      position: absolute;
+    }
+    .title-radio-svg {
+      fill: currentColor;
+      width: 1em;
+      color: rgba(0, 0, 0, 0.54);
+      margin: 0 auto 8px;
+      z-index: 2;
+      height: 1em;
+      display: inline-block;
+      font-size: 1.4rem;
+      transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+      flex-shrink: 0;
+      user-select: none;
+    }
+    .title-radio-svg:hover {
+      color: black;
+    }
+
+    .active1 {
+      border: 2px solid #19857b;
+      box-shadow: rgb(0 0 0 / 20%) 0px 3px 5px -1px,
+        rgb(0 0 0 / 14%) 0px 5px 8px 0px, rgb(0 0 0 / 12%) 0px 1px 14px 0px;
+    }
+    .input-label {
+      color: #291b44;
+      position: relative;
+      font-size: 1rem;
+      transform: scale(1);
+      margin-top: 0;
+      line-height: 1.25rem;
+      font-weight: 600;
+      margin-right: 48px;
+      transform-origin: top left;
+      transition: color 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
+        transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+    }
+    .user-input-holder input,
+    .user-input-holder select {
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding-top: 12px;
+      padding-bottom: 10px;
+      text-transform: none;
+      font: inherit;
+      color: currentColor;
+      width: 100%;
+      border: 0;
+      height: 1.1876em;
+      margin: 0;
+      display: block;
+      padding: 12px 0 10px;
+      min-width: 0;
+      background: none;
+      box-sizing: content-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .user-input-holder input:focus,
+    .user-input-holder select:focus {
+      outline: none;
+    }
+    .user-input-holder:before {
+      border-bottom: 2px solid #e5e5e5;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      content: "\00a0";
+      position: absolute;
+      transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+      pointer-events: none;
+      border-bottom-color: #e5e5e5;
+      border-bottom-width: 2px;
+    }
+    .user-input-holder:after {
+      left: 0;
+      right: 0;
+      bottom: 0;
+      content: "";
+      position: absolute;
+      transform: scaleX(0);
+      transition: transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+      border-bottom: 2px solid #291b44;
+      pointer-events: none;
+    }
+    .user-input-holder:hover:before {
+      border-bottom-color: #19857b;
+    }
+    .user-input-holder:hover:after {
+      border-bottom-color: #19857b;
+      transform: scaleX(1);
+    }
+    .button-class {
+      width: 130px;
+      font-size: 18px;
+      border: 0px;
+      height: 50px;
+      margin: 15px auto;
+      font-weight: 600;
+      line-height: 50px;
+      text-align: center;
+      border: 2px solid #00c9af;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 25px;
+      box-sizing: border-box;
+      transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+      background-color: #00c9af;
+    }
+
+    .button-class:hover {
+      background: white;
+      box-shadow: 0px 9px 8px rgb(0 201 175 / 22%);
+      color: #00c9af;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <div class="form-holder">
+        <div class="header-text">
+          Let's get started. <br />
+          tell us your client’s details.
+        </div>
+        <div class="row">
+          <div class="col-sm-6 m-auto">
+            <div class="form-class">
+              <fieldset class="user-title-holder">
+                <legend class="title-legend">First applicant title</legend>
+                <!-- first user title  -->
+                <div class="user-title-box" id="box1">
+                  <legend class="user-title-box-label">
+                    <input
+                      type="radio"
+                      class="user-title-radio"
+                      name="user-title-input"
+                      id="radio1"
+                      value="Mr"
+                    />
+                    <svg
+                      class="title-radio-svg"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                      ></path>
+                    </svg>
+                    <p>Mr</p>
+                  </legend>
+                </div>
+                <!-- second user title  -->
+                <div class="user-title-box" id="box2">
+                  <legend class="user-title-box-label">
+                    <input
+                      type="radio"
+                      class="user-title-radio"
+                      name="user-title-input"
+                      id="radio2"
+                      value="Mrs"
+                    />
+                    <svg
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                      class="title-radio-svg"
+                    >
+                      <path
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                      ></path>
+                    </svg>
+                    <p>Mrs</p>
+                  </legend>
+                </div>
+                <!-- third user title  -->
+                <div class="user-title-box" id="box3">
+                  <legend class="user-title-box-label">
+                    <input
+                      type="radio"
+                      class="user-title-radio"
+                      name="user-title-input"
+                      id="radio3"
+                      value="Miss"
+                    />
+                    <svg
+                      class="title-radio-svg"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                      ></path>
+                    </svg>
+
+                    <p>Miss</p>
+                  </legend>
+                </div>
+                <!-- forth user title  -->
+                <div class="user-title-box" id="box4">
+                  <legend class="user-title-box-label">
+                    <input
+                      type="radio"
+                      class="user-title-radio"
+                      name="user-title-input"
+                      id="radio4"
+                      value="Ms"
+                    />
+                    <svg
+                      class="title-radio-svg"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                      ></path>
+                    </svg>
+                    <p>Ms</p>
+                  </legend>
+                </div>
+              </fieldset>
+              <!-- form inputs -->
+              <div class="user-input-holder">
+                <label class="input-label">First name</label>
+                <input type="text" name="" id="" placeholder="first name" />
+              </div>
+              <div class="user-input-holder">
+                <label class="input-label">Last name</label>
+                <input type="text" name="" id="" placeholder="last name" />
+              </div>
+              <div class="user-input-holder">
+                <label class="input-label">Date of birth</label>
+                <input type="date" name="" id="" />
+              </div>
+              <div class="user-input-holder">
+                <label class="input-label">Maritial status</label>
+                <select name="" id="">
+                  <option value="single">Single</option>
+                  <option value="Married">Married</option>
+                  <option value="widowed">Widowed</option>
+                  <option value="divorced">Divorced</option>
+                </select>
+              </div>
+              <div class="button-class">Next</div>
+            </div>
+          </div>
+          <div class="col-sm-6" style="display: none"></div>
+        </div>
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        // alert("dad");
+        $("#radio1").click(function () {
+          $("#box1").addClass("active1").siblings().removeClass("active1");
+        });
+        $("#radio2").click(function () {
+          $("#box2").addClass("active1").siblings().removeClass("active1");
+        });
+        $("#radio3").click(function () {
+          $("#box3").addClass("active1").siblings().removeClass("active1");
+        });
+        $("#radio4").click(function () {
+          $("#box4").addClass("active1").siblings().removeClass("active1");
+        });
+      });
+    </script>
+  </body>
+</html>
